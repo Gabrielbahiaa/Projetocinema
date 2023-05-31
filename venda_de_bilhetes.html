@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="is-centered" style="border: 1px solid; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 10px;">
+      <img id="poster"></img>
+      <div id="overview"></div>
+    </div>
+    <div class="columns is-mobile is-centered">
+      <div class="column is-half" style="border: solid 1px">
+        <img src="" alt="">
+        <form action="venda_de_bilhetes.html" method="post">
+          <div class="field">
+            <label class="label">Nome</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Nome" name="nome">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">CPF</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="CPF" name="cpf">
+            </div>
+          
+          <div class="field">
+            <label class="label">Data de Nascimento</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Data de Nascimento" name="data_nascimento">
+            </div>
+
+          <div class="field">
+            <label class="label">Filme</label>
+            <div class="control">
+              <select class="input">
+                <option>Selecione</option>
+                <option value="0">StarWars</option>
+                <option value="1">TopGun</option>
+                <option value="2">Titanic</option>
+                <option value="3">Avatar</option>
+                </select>
+                </div>
+
+          <div class="field">
+            <label class="label">Quantidade</label>
+            <div class="control">
+              <input class="input" id="qty" type="number" placeholder="Quantidade" name="quantidade">
+
+          <div class="field">
+            <label class="label">Valor</label>
+            <div class="control">
+              <input class="input" id="price" type="text" disabled placeholder="Valor" name="valor">
+
+          <div class="field">
+            <label class="label">Total</label>
+            <div class="control">
+              <input class="input" id="total" type="text" disabled placeholder="Total" name="total">
+
+          <div class="field">
+            <label class="label">Forma de Pagamento</label>
+            <div class="control">
+              <select class="input">
+                <option>Selecione</option>
+                <option value="0">Dinheiro</option>
+                <option value="1">Cartão de Crédito</option>
+                <option value="2">Cartão de Débito</option>
+                <option value="3">Boleto</option>
+                </select>
+                </div>
+
+          <div class="field">
+            <label class="label">Cadeira</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="escolha a cadeira" name="cadeira">
+            </div>
+      </div>
+    </div>
+    <script>
+
+var filmes = [
+  {
+    nome: "Star Wars",
+    preco: "R$ 10,00",
+    imagem: "https://rollingstone.uol.com.br/media/_versions/poster_classico_de_star_wars__uma_nova_esperanca_-_reproducao__lucasfilm_widelg.jpg",
+    overview: "Star Wars é uma franquia do tipo space opera estadunidense criada pelo cineasta George Lucas, que conta com uma série de nove filmes de fantasia científica e dois spin-offs."
+  },
+  {
+    nome: "Top Gun",
+    preco: "R$ 10,00",
+    imagem: "http://www.shoppingcostadourada.com.br/assets/repositorio/filme/16530486761586-topgun.png",
+    overview: 'Depois de mais de 30 anos de serviço como um dos principais aviadores da Marinha, Pete "Maverick" Mitchell está de volta, rompendo os limites como um piloto de testes corajoso. No mundo contemporâneo das guerras tecnológicas, Maverick enfrenta drones e prova que o fator humano ainda é essencial.'
+  },
+  {
+    nome: "Titanic",
+    preco: "R$ 5,00",
+    imagem: "https://uauposters.com.br/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/9/198820140605-198820140605-uau-posters-filmes-titanic--titanic-.jpg",
+    overview: "Titanic é um filme épico de romance e drama norte-americano de 1997, escrito, dirigido, co-produzido e co-editado por James Cameron. É uma história de ficção do naufrágio real do RMS Titanic, estrelando Leonardo DiCaprio como Jack Dawson, e Kate Winslet como Rose DeWitt Bukater, membros de diferentes classes sociais que se apaixonam durante a fatídica viagem inaugural no navio saindo de Southampton para Nova York em 15 de abril de 1912. Apesar dos personagens principais serem fictícios, alguns personagens são figuras históricas. Gloria Stuart interpreta Rose idosa, que narra o filme; e Billy Zane interpreta Cal Hockley, o noivo rico da jovem Rose. Cameron viu a história de amor como um jeito de cativar o público para o desastre real."
+  },
+  {
+    nome: "Avatar",
+    preco: "R$ 25,00",
+    imagem: "https://http2.mlstatic.com/D_NQ_NP_13835-MLB4594260504_072013-O.jpg",
+    overview: 'Avatar: The Way of Water é um futuro filme épico de ficção científica americano co-escrito, co-editado, co-produzido e dirigido por James Cameron, e produzido pela 20th Century Studios, com sua data de lançamento prevista para 16 de dezembro de 2022. Será a sequência de Avatar.'
+  },
+];
+      
+      // make fetch on chose select element to get the data of films api
+      document.querySelector('select').addEventListener('change', function(e) {
+        var filme = e.target.value;
+        document.getElementById('poster').src = filmes[filme].imagem;
+        document.getElementById('overview').innerHTML = filmes[filme].overview;
+        document.getElementById('price').value = filmes[filme].preco;
+      })
+
+      document.querySelector('#qty').addEventListener('change', function(e) {
+        var qty = e.target.value;
+        var price = document.getElementById('price').value;
+        document.getElementById('total').value = qty * price
+      
+      })
+    </script>
+  </body>
+</html>
